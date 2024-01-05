@@ -10,7 +10,7 @@ git clone https://github.com/rendick/nvbar.git
 - [x] Memory
 - [x] Time
 - [ ] CPU usage
-- [ ] Keyboard layout
+- [x] Keyboard layout
 - [ ] Battery
 
 - [ ] Colors
