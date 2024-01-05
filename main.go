@@ -42,7 +42,14 @@ func main() {
 			panic(err_total)
 		}
 
-		fmt.Printf("%d MB / %d MB ", (total-avail)/1024, total/1024)
+		// Connection
+		connection, err := exec.Command("sh", "-c", "ping -q -c1 google.com &>/dev/null && echo online || echo offline").Output()
+		if err != nil {
+			panic(err)
+		}
+		// fmt.Printf("%s", connection)
+
+		fmt.Printf("%s %d MB / %d MB ", strings.Replace(string(connection), "\n", "", -1), (total-avail)/1024, total/1024)
 
 		fmt.Printf("%s\n", date)
 
