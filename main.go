@@ -10,9 +10,7 @@ import (
 )
 
 func main() {
-	for i := 0; i < 20; i++ {
-		// s, _ := f.Marshal(obj)
-		// fmt.Println(string(s))
+	for {
 		// Time
 		date := time.Now().Format(time.RFC850)
 
@@ -47,11 +45,18 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		// fmt.Printf("%s", connection)
 
-		fmt.Printf("%s %d MB / %d MB ", strings.Replace(string(connection), "\n", "", -1), (total-avail)/1024, total/1024)
+		// Keyboard layout
+		keyboard, err := exec.Command("xkb-switch").Output()
+		if err != nil {
+			panic(err)
+		}
 
-		fmt.Printf("%s\n", date)
+		fmt.Printf("%s"+" | "+"%d MB / %d MB"+" | "+"%s"+"| "+"%s\n",
+			strings.Replace(string(connection), "\n", "", -1),
+			(total-avail)/1024, total/1024,
+			strings.Replace(string(keyboard), "\n", " ", -1),
+			date)
 
 		time.Sleep(time.Second)
 
