@@ -52,10 +52,17 @@ func main() {
 			panic(err)
 		}
 
-		fmt.Printf("%s"+" | "+"%d MB / %d MB"+" | "+"%s"+"| "+"%s\n",
+		// BAT
+		battery, err := exec.Command("cat", "/sys/class/power_supply/BAT0/capacity").Output()
+		if err != nil {
+			panic(err)
+		}
+
+		fmt.Printf("%s"+" | "+"%d MB / %d MB"+" | "+"%s"+"| "+"%s"+"| "+"%s\n",
 			strings.Replace(string(connection), "\n", "", -1),
 			(total-avail)/1024, total/1024,
 			strings.Replace(string(keyboard), "\n", " ", -1),
+			strings.Replace(string(battery), "\n", " ", -1),
 			date)
 
 		time.Sleep(time.Second)
