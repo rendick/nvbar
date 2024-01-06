@@ -12,7 +12,8 @@ import (
 func main() {
 	for {
 		// Time
-		date := time.Now().Format(time.RFC850)
+		// date := time.Now().Format(time.RFC850)
+		date := time.Now()
 
 		// CPU usage
 		// cpu, err := exec.Command("sh", "-c", "echo "CPU Usage: "$[100-$(vmstat 1 2|tail -1|awk '{print $15}')]"%"")
@@ -53,7 +54,7 @@ func main() {
 		}
 
 		// BAT
-		battery, err := exec.Command("cat", "/sys/class/power_supply/BAT0/capacity").Output()
+		battery, err := exec.Command("cat", "/sys/class/power_supply/BAT1/capacity").Output()
 		if err != nil {
 			panic(err)
 		}
@@ -63,7 +64,7 @@ func main() {
 			(total-avail)/1024, total/1024,
 			strings.Replace(string(keyboard), "\n", " ", -1),
 			strings.Replace(string(battery), "\n", " ", -1),
-			date)
+			date.Format("2006-01-02 15:04:05"))
 
 		time.Sleep(time.Second)
 
