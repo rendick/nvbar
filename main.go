@@ -53,17 +53,36 @@ func main() {
 			panic(err)
 		}
 
-		// BAT
-		battery, err := exec.Command("cat", "/sys/class/power_supply/BAT1/capacity").Output()
+		// Battery
+		var batteryOutput string
+
+		batteryDir, err := os.Open("/sys/class/power_supply/")
 		if err != nil {
 			panic(err)
 		}
+		batteryFiles, err := batteryDir.Readdir(-1)
+		batteryDir.Close()
+		if err != nil {
+			panic(err)
+		}
+		for _, file := range batteryFiles {
+			if strings.HasPrefix(file.Name(), "BAT") {
 
-		fmt.Printf("%s"+" | "+"%d MB / %d MB"+" | "+"%s"+"| "+"%s"+"| "+"%s\n",
+				batteryCmd := exec.Command("cat", fmt.Sprintf("/sys/class/power_supply/%s/capacity", file.Name()))
+				batteryOutputBytes, err := batteryCmd.Output()
+				if err != nil {
+					panic(err)
+				}
+
+				batteryOutput += strings.TrimSpace(string(batteryOutputBytes)) + " "
+			}
+		}
+
+		fmt.Printf("%s"+" | "+"%d MB / %d MB"+" | "+"%s"+"| "+"%s"+" | "+"%s\n",
 			strings.Replace(string(connection), "\n", "", -1),
 			(total-avail)/1024, total/1024,
 			strings.Replace(string(keyboard), "\n", " ", -1),
-			strings.Replace(string(battery), "\n", " ", -1),
+			strings.TrimSpace(batteryOutput),
 			date.Format("2006-01-02 15:04:05"))
 
 		time.Sleep(time.Second)
