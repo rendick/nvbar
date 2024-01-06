@@ -11,6 +11,6 @@ git clone https://github.com/rendick/nvbar.git
 - [x] Time
 - [ ] CPU usage
 - [x] Keyboard layout
-- [ ] Battery
+- [x] Battery
 
 - [ ] Colors

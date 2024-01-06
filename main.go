@@ -85,7 +85,6 @@ func Battery() {
 
 func main() {
 	for {
-
 		Network()
 		Memory()
 		Keyboard()
@@ -99,7 +98,5 @@ func main() {
 			DateOutput)
 
 		time.Sleep(time.Second)
-
 	}
-
 }
