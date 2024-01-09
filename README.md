@@ -1,5 +1,8 @@
 # nvbar - a bar
 
+![image](https://github.com/rendick/nvbar/assets/91757099/aff0f6fa-ecba-4a02-9640-c97308b7572b)
+
+
 ```bash
 git clone https://github.com/rendick/nvbar.git
 sh install.sh
@@ -9,9 +12,9 @@ nvbar
 ```bash
 bar {
         status_command nvbar 
-	    position top
-		mode dock
-	    separator_symbol  " | "
+	position top
+	mode dock
+	separator_symbol  " | "
         modifier None
         colors {
 
