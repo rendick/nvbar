@@ -48,7 +48,7 @@ func Memory() {
 }
 
 func Network() {
-	network, err := exec.Command("sh", "-c", "ping -q -c1 google.com &>/dev/null && echo online || echo offline").Output()
+	network, err := exec.Command("sh", "-c", "ping -q -c1 duckduckgo.com &>/dev/null && echo up || echo down").Output()
 	if err != nil {
 		panic(err)
 	}
@@ -97,7 +97,7 @@ func main() {
 			NetworkOutput,
 			MemoryOutput,
 			KeyboardOutput,
-			strings.TrimSpace(BatteryOutput),
+			strings.TrimSpace(BatteryOutput) + "%",
 			DateOutput)
 
 		time.Sleep(time.Second)
