@@ -7,6 +7,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/fatih/color"
 )
 
 var DateOutput string
@@ -16,7 +18,8 @@ var KeyboardOutput string
 var BatteryOutput string
 
 func Date() {
-	DateOutput = fmt.Sprintf("%s", time.Now().Format("2006-01-02 15:04:05"))
+	blue := color.New(color.FgBlue).SprintfFunc()
+	DateOutput = blue("%s", time.Now().Format("2006-01-02 15:04:05"))
 }
 
 func Memory() {

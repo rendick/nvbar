@@ -2,6 +2,8 @@
 
 ```
 git clone https://github.com/rendick/nvbar.git
+sh install.sh
+nvbar
 ```
 
 # To-Do
