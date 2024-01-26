@@ -97,7 +97,7 @@ func main() {
 			NetworkOutput,
 			MemoryOutput,
 			KeyboardOutput,
-			strings.TrimSpace(BatteryOutput) + "%",
+			strings.TrimSpace(BatteryOutput)+"%",
 			DateOutput)
 
 		time.Sleep(time.Second)
